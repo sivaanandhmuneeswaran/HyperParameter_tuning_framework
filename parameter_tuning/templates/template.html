@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<title>Projection by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo" style="font-size: 175%"><strong>Framework for Tuning Deep Learning Network Parameters</strong></a>
+					<nav id="nav">
+						<a href="index.html">Home</a>
+						<a href="generic.html">Generic</a>
+						<a href="elements.html">Elements</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
+<section id="banner">
+    <div class="inner">
+        <form action="{% url 'train_model' %}" method="POST" enctype="multipart/form-data" >
+		
+		
+            <h1 style="text-align:left;line-height:0em">Convolution Layer</h1>
+			<div style="text-align:justify">
+            <input style="width:10%" type="number" id="filter_size" name="filter_size" placeholder="Filter Size" required><br><br>
+            <input style="width:13%" type="number" id="conv_height" name="conv_height" placeholder="Convolution height" required>
+            <input style="width:13%" type="number" id="conv_width" name="conv_width" placeholder="Convolution width" required><br><br>
+            <input style="width:10%" type="number" id="img_width" name="img_width" placeholder="Image width" required>
+            <input style="width:10%" type="number" id="img_width" name="img_width" placeholder="Image width" required>
+            <input style="width:11%" type="number" id="channel" name="channel" placeholder="No of channels" required><br><br>
+			</div>
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <h3 style="text-align:left;line-height:1em"> Activation function : </h3></td>
+            <td><p><select style="width:100%" name="activation_function_conv">
+                <option value="relu">Linear Rectifier</option>
+                <option value="softmax">Softmax</option>
+                <option value="elu">elu</option>
+                <option value="tanh">tanh</option>
+                <option value="sigmoid">sigmoid</option>
+            </select></td></tr></tbody></table></p><br><br>
+			
+			
+            <h1 style="text-align:left;line-height:0em">Pooling Layer</h1>
+			<div style="text-align:justify">
+            <input type="number" id="pool_height" name="pool_height" placeholder="Pooling height" required>
+            <input type="number" id="pool_width" name="pool_width" placeholder="Pooling width" required><br><br><br>
+			</div><br>
+			
+			
+			
+            <h1 style="text-align:justify;line-height:0em">Full Connected Layer</h1>
+			<div style="text-align:justify">
+            <input type="number" id="class_count" name="class_count" placeholder="No of classes" required><br><br>
+			</div><br>
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <h3 style="text-align:justify"> Activation Function : </h3></td>
+			
+            <td><select style="text-align:center;width:100%" name="activation_function_fc">
+                    <option value="relu">Linear Rectifier</option>
+                    <option value="softmax">Softmax</option>
+                    <option value="elu">elu</option>
+                    <option value="tanh">tanh</option>
+                    <option value="sigmoid">sigmoid</option>
+            </select></td></tr></tbody></table><br>
+			
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <h3 style="text-align:justify;line-height:1em"> Optmizier : </h3></td>
+			<td><select style="text-align:left;width:100%" name="optimizer">
+                    <option value="rmsprop">RMSPROP</option>
+                    <option value="adam">Adam</option>
+            </select></td></tr></tbody></table><br>
+			
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <h3 style="text-align:justify;line-height:1em"> Loss Function : </h3></td>
+            <td><select style="text-align:left;width:80%" name="loss_function">
+                    <option value="categorical_crossentropy">categorical_crossentropy</option>
+                    <option value="sparse_categorical_crossentropy">sparse_categorical_crossentropy</option>
+                    <option value="binary_crossentropy">binary_crossentropy</option>
+            </select></td></tr></tbody></table><br><br>
+            <button type="submit" id="train_btn" name="train_btn" class="button">Train</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

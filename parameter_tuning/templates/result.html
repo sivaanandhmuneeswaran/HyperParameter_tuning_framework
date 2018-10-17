@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load train_model_tags %}
+{% block content %}
+
+<section id="banner">
+    <div class="inner">
+        {% if request.session.username %}
+        <h3 style="text-align:right;line-height:0em">Hi, {{request.session.username}}</h3><br>
+        <a style="float:right;line-height:0em" href="{% url 'logout' %}" > <button type="button"  id="logout" name="logout" class="button">Logout</button></a><br><br>
+        {% endif %}
+        <a href="{% url 'download_model' %}" id="model"><label for="model" class="button">DOWNLOAD MODEL</label></a>
+        <br>
+        <a href="{% url 'download_weight' %}" id="weight"><label for="weight" class="button">DOWNLOAD WEIGHT</label></a>
+    </div>
+</section>
+{% endblock %}

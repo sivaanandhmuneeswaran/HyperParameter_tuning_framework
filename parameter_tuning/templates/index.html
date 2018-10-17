@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section id="banner">
+        
+    <div class="inner">
+            {% if request.session.username %}
+            <h3 style="text-align:right;line-height:0em">Hi, {{request.session.username}}</h3><br>
+            <a style="float:right;line-height:0em" href="{% url 'logout' %}" > <button type="button"  id="logout" name="logout" class="button">Logout</button></a><br><br>
+            {% endif %}
+        <form action="{% url 'index' %}" method="POST" enctype="multipart/form-data" >
+            {% if not request.session.username %}
+            <div id="email_show" class="field half" style="width:300px">
+                <input name="email" id="email" type="email" placeholder="Email" required>
+            </div><br>  
+            {% endif %}
+            <button class="button" id="new_upload" name="new_upload" type="submit">Upload new dataset</button>
+            <br><br>
+            <button id="old_upload" name="old_upload" class = "button" type="submit">Use existing dataset</button>
+        </form>
+    </div>
+    {% if no_dataset %}
+    <script>
+            function myFunction() {
+                alert("There is no existing dataset. Kindly upload a dataset");
+            }
+
+            myFunction();
+    </script>
+    {% endif %}
+    {% if mail_flag %}
+    <script>
+            function myFunction() {
+                alert("mail sent successfully");
+            }
+
+            myFunction();
+    </script>
+    {% endif %}
+</section>
+{% endblock %}

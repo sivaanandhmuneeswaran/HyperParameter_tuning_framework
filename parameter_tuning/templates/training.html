@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    #myProgress {
+      width: 100%;
+      background-color: #ddd;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      padding: 1px;
+    }
+    
+    #myBar {
+      width: 0%;
+      height: 30px;
+      background-color: #4CAF50;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+    }
+    </style>
+<script type="text/javascript">
+    var width = {{ increase }};
+
+    function move() {
+        var elem = document.getElementById("myBar");   
+        elem.style.width = width + '%'; 
+        elem.innerHTML = width * 1  + '%';
+    }
+    function enablehref(){
+        document.getElementById("anc").click();
+    }
+    function changehref(){
+        document.getElementById("status").innerHTML="Training completed!!";
+    }
+
+</script>
+<section id="banner">
+    <div class="inner">
+        {% if request.session.username %}
+        <h3 style="text-align:right;line-height:0em">Hi, {{request.session.username}}</h3><br>
+        <a style="float:right;line-height:0em" href="{% url 'logout' %}" > <button type="button"  id="logout" name="logout" class="button">Logout</button></a><br><br>
+        {% endif %}
+        <a href="{% url 'training_model' %}" style="visibility: hidden" id="anc"></a>
+        <h1 id="status">Training in progress...</h1>
+        <div id="myProgress">
+                <div id="myBar">{{ increase }}%</div>
+        </div>
+        <br>
+            <table id="metricsTable" style="width:100%;color: white;font-size: 20px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h3 style="text-align:left;line-height:1em">Training accuracy : {{ train_accuracy }} </h3>
+                        </td>
+                        <td>
+                            <h3 style="text-align:left;line-height:1em">Training Loss : {{ train_loss }}</h3>
+                        </td>
+                        <td>
+                            <h3 style="text-align:left;line-height:1em">Validation accuracy : {{ validation_accuracy }}</h3>
+                        </td>
+                        <td>
+                            <h3 style="text-align:left;line-height:1em">Validation loss : {{ validation_loss }}</h3>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+            <br>
+    <script>
+        move();
+    </script>
+    {% if progress_flag %}
+    <script>
+        enablehref();
+    </script>
+    {% else %}
+    <script>
+        changehref();
+    </script>
+        <a href="{% url 'download' %}"  id="download_anchor" name="download_anchor" class="button"> Results</a>
+    {% endif %}
+    </div>
+</section>
+{% endblock %}

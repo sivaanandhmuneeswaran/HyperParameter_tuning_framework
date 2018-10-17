@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<section id="banner">
+    <div class="inner">
+            {% if request.session.username %}
+            <h3 style="text-align:right;line-height:0em">Hi, {{request.session.username}}</h3><br>
+            <a style="float:right;line-height:0em" href="{% url 'logout' %}" > <button type="button"  id="logout" name="logout" class="button">Logout</button></a><br><br>
+            {% endif %}
+        <form action="{% url 'add_conv_layer_new' %}" method="POST" enctype="multipart/form-data" >
+		
+		
+            <h1 style="text-align:left;line-height:0em">Convolution Layer</h1>
+			<div style="text-align:justify">
+            <input style="width:10%; color: black " type="number" min="1" id="filter_size" name="filter_size" placeholder="Filter Size" required><br><br>
+            <input style="width:13%; color: black" type="number" min="1" id="conv_height" name="conv_height" placeholder="Convolution height" required>
+            <input style="width:13%; color: black" type="number" min="1" id="conv_width" name="conv_width" placeholder="Convolution width" required><br><br>
+			</div>
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <h3 style="text-align:left;line-height:1em"> Activation function : </h3></td>
+            <td><p><select style="width:100%;color: black" name="activation_function_conv">
+                <option value="relu">Linear Rectifier</option>
+                <option value="softmax">Softmax</option>
+                <option value="elu">elu</option>
+                <option value="tanh">tanh</option>
+                <option value="sigmoid">sigmoid</option>
+            </select></td></tr></tbody></table></p><br><br>
+			
+            <h1 style="text-align:left;line-height:0em">Max Pooling Layer</h1>
+			<table>
+			<tbody>
+			<tr>
+</tr></tbody></table><br>
+			<div style="text-align:left">
+            <input type="number" style="color: black" id="pool_height" name="pool_height" min="1" placeholder="Pooling height" required>
+            <input type="number"  style="color: black"id="pool_width" name="pool_width" min="1" placeholder="Pooling width" required><br><br><br>
+			</div><br>
+			
+			
+            <button type="submit" id="add_layer_btn_new" name="add_layer_btn_new" class="button">Add Convolution Layer</button>
+			<button type="submit" id="train_btn" name="train_btn" class="button">Proceed to Train</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section id="banner">
+        
+    <div class="inner">
+        {% if request.session.username %}
+        <h3 style="text-align:right;line-height:0em">Hi, {{request.session.username}}</h3><br>
+        <a style="float:right;line-height:0em" href="{% url 'logout' %}" > <button type="button"  id="logout" name="logout" class="button">Logout</button></a><br><br>
+        {% endif %}
+        <h2>Select existing dataset</h2>
+        <form action="{% url 'use_existing_dataset' %}" method="POST" enctype="multipart/form-data" >
+            <select style="width:100%;color: black" name="existing_dataset">
+                {% for dataset in dir_list %}
+                <option value="{{dataset|safe}}"> <button type="submit" class="button">{{dataset|safe}}</button></option>
+                {% endfor %}
+            </select><br>
+            <button type="submit" id="submit_btn" name="submit_btn" class="button">Select dataset</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<section id="banner">
+    <div class="inner">
+		
+					<header>
+						<a style="font-size:50px;color:white"><u>Contact Us</u></a><br><br>
+					</header>
+
+					<div class="flex ">
+
+						<div>
+							<span class="icon fa-camera"></span>
+							<h3>D.R.Venkateshwar</h3>
+							<p>mepcovenkat97@gmail.com</p>
+							<p>+91-9585217654</p>
+						</div>
+
+						<div>
+							<span class="icon fa-bug"></span>
+							<h3>Sivaanandh M</h3>
+							<p>sivaanandhmuneeswaran@gmail.com</p>
+							<p>+91-9843604626</p>
+						</div>
+
+						<div>
+							<span class="icon fa-car"></span>
+							<h3>K.Akshay Kanna</h3>
+							<p>akshay120298@gmail.com</p>
+							<p>+91-9626418340</p>
+						</div>
+
+					</div><br><br><br>
+			<footer id="footer" style="padding:5em;padding-top:0em">
+				<div class="inner">
+
+					<h3>Get in touch</h3>
+
+					<form action="{% url 'send_mail' %}" method="post">
+
+						<div class="field half first">
+							<input name="name" id="name" type="text" placeholder="Name">
+						</div>
+						<div class="field half">
+							<input name="email" id="email" type="email" placeholder="Email">
+						</div>
+						<div class="field">
+							<textarea name="message" style="color:black" id="message" rows="6" placeholder="Message"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input value="Send Message" class="button alt" type="submit"></li>
+						</ul>
+					</form>
+				</div>
+			</footer>
+			    </div>
+</section>
+</body>
+{% endblock %}

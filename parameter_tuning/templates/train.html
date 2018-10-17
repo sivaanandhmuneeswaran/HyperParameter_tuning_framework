@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<section id="banner">
+    <div class="inner">
+            {% if request.session.username %}
+            <h3 style="text-align:right;line-height:0em">Hi, {{request.session.username}}</h3><br>
+            <a style="float:right;line-height:0em" href="{% url 'logout' %}" > <button type="button"  id="logout" name="logout" class="button">Logout</button></a><br><br>
+            {% endif %}
+        <form action="{% url 'train_model' %}" method="POST" enctype="multipart/form-data" >
+            <h1 style="text-align:justify;line-height:0em">Full Connected Layer</h1>
+			<div style="text-align:justify">
+            <input type="number" style="color:black" min="1" id="class_count" name="class_count" placeholder="No of classes" required><br><br>
+			</div><br>
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <h3 style="text-align:justify"> Activation Function : </h3></td>
+			
+            <td><select style="text-align:center;width:100%;color: black" name="activation_function_fc">
+                    <option value="relu">Linear Rectifier</option>
+                    <option value="softmax">Softmax</option>
+                    <option value="elu">elu</option>
+                    <option value="tanh">tanh</option>
+                    <option value="sigmoid">sigmoid</option>
+            </select></td></tr></tbody></table><br> 
+			
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <h3 style="text-align:justify;line-height:1em"> Optimizier : </h3></td>
+			<td><select style="text-align:left;width:100%;color: black" name="optimizer">
+                    <option value="Adam">Adam</option>
+					<option value="rmsprop">RMSPROP</option>
+            </select></td></tr></tbody></table><br>
+			
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <h3 style="text-align:justify;line-height:1em"> Loss Function : </h3></td>
+            <td><select style="text-align:left;width:80%;color: black" name="loss_function">
+                    <option value="categorical_crossentropy">categorical_crossentropy</option>
+                    <option value="sparse_categorical_crossentropy">sparse_categorical_crossentropy</option>
+                    <option value="binary_crossentropy">binary_crossentropy</option>
+            </select></td></tr></tbody></table><br><br><br>
+			
+			<h1 style="text-align:left;line-height:0em">Image Pre-processing</h1>
+			<div style="text-align:justify">
+			<input type="number" style="color:black" min="1" step="any" id="shear_range" name="shear_range" placeholder="Shear Range" required>
+            <input type="number" style="color:black" min="1" step="any" id="zoom_range" name="zoom_range" placeholder="Zoom Range" required><br><br><br>
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <h3 style="text-align:justify;line-height:1em"> Horizontal Flip : </h3></td>
+            <td><select style="text-align:left;width:100%;color: black" name="horizontal_flip">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+            </select></td></tr></tbody></table><br>
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <h3 style="text-align:justify;line-height:1em"> Vertical Flip : </h3></td>
+            <td><select style="text-align:left;width:100%;color: black" name="vertical_flip">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+            </select></td></tr></tbody></table><br><br>
+			
+			<table border="0">
+			<tbody>
+			<tr>
+			<td>
+            <input style="color:black" type="number" min="1" id="batch_size" name="batch_size" placeholder="Batch Size" required></td><br><br><td style="width:10%"></td>
+            <td><input style="color:black" type="number" min="1" id="epoch_count" name="epoch_count" placeholder="No of Epoch" required></td></tr></tbody></table><br><br><br>
+			<br>
+			</div>
+            <button type="submit" id="train_btn" name="train_btn" class="button">Train</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

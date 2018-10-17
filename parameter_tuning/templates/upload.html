@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section id="banner">
+        
+    <div class="inner">
+            {% if request.session.username %}
+            <h3 style="text-align:right;line-height:0em">Hi, {{request.session.username}}</h3><br>
+            <a style="float:right;line-height:0em" href="{% url 'logout' %}" > <button type="button"  id="logout" name="logout" class="button">Logout</button></a><br><br>
+            {% endif %}
+        <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data" >            
+            <input  type = "file" accept=".zip" id="file_upload" name="my_file" style="opacity: 0; width:0;"> 
+            <label id = "my_file_lbl" for="file_upload" class="button"> Load ZIP</label>    
+            <button class="button" id="upload_btn" name="upload_btn" type="submit">Upload</button>
+            <br>
+            <button id="train_model_btn" name="train_model_btn" class = "button" type="submit">Train model</button>
+        </form>
+    </div>
+    {% if no_file_flag %}
+    <script>
+        function noFile() {
+            alert("Kindly load the file and then upload");
+        }
+        noFile()
+    </script>
+    {% endif %}
+    {% if not_flag %}
+    <script>
+        function noFile() {
+            alert("Kindly upload the file and proceed to training");
+        }
+        noFile()
+    </script>
+    {% endif %}
+    {% if flag %}
+    <script>
+            function myFunction() {
+                alert("Upload Successful");
+            }
+            function disableElements(){
+                var my_file_lbl =  document.getElementById("my_file_lbl");
+                my_file_lbl.style.display = "none";
+                var upload_btn =  document.getElementById("upload_btn");
+                upload_btn.style.display = "none";
+                var my_file =  document.getElementById("my_file");
+                my_file.style.display = "none";
+                
+                
+            }
+            myFunction();
+            disableElements();
+    </script>
+    {% endif %}
+</section>
+{% endblock %}
